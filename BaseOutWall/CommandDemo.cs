@@ -32,6 +32,7 @@ namespace BaseOutWall
                 //CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)6, "", false);
                 //CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)7, "", false);
                 //CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)8, "", false);
+                CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100");
 
                 tr.Commit();
             }

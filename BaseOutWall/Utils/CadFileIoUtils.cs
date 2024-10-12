@@ -20,6 +20,8 @@ namespace BaseOutWall.Utils
     /// </summary>
     internal static class CadFileIoUtils
     {
+        #region 图层Layer
+
         /// <summary>
         /// 目前发生在Update之前
         /// </summary>
@@ -236,8 +238,6 @@ namespace BaseOutWall.Utils
             }
         }
 
-        #region 图层Layer
-
         /// <summary>
         /// 添加默认图层
         /// </summary>
@@ -248,8 +248,8 @@ namespace BaseOutWall.Utils
         {
 
             short colorIndex1 = (short)(colorIndex % 256);//防止输入的颜色超出256 using 
-                                                          //层表记录
-            var layerTable = GetLayerTables(drawing);
+
+            var layerTable = GetLayerTables(drawing); //层表记录
             if (!layerTable.Has(layerName))
             {
                 LayerTableRecord ltr = new LayerTableRecord();
@@ -389,6 +389,87 @@ namespace BaseOutWall.Utils
 
         #endregion
 
+        #region 字体Style
+
+        #endregion
+
+        #region 标注DimStyle
+
+        public static void CadDrawingUtils_AddDimStyle(CadDrawing drawing, short colorIndex, string layerName)
+        {
+            short colorIndex1 = (short)(colorIndex % 256);//防止输入的颜色超出256 using 
+
+            var dimStyleTable = GetDimStyleTable(drawing); //层表记录
+            if (!dimStyleTable.Has(layerName))
+            {
+                var dstr = new DimStyleTableRecord();
+                dstr.Name = layerName;
+                //dstr.Color = Color.FromColorIndex(ColorMethod.ByColor, colorIndex1);
+                dstr.Name = layerName;
+                dstr.Dimscale = 1.0;
+                drawing.Cad_Trans.AddNewlyCreatedDBObject(dstr, true);
+                SetCurrentDimStyle(drawing, dstr);
+            }
+            else
+            {
+                DimStyleTableRecord dstr = drawing.Cad_Trans.GetObject(dimStyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
+                if (dstr != null)
+                    SetCurrentDimStyle(drawing, dstr);
+            }
+        }
+
+        /// <summary>
+        /// 获取标注样式表记录（读写）
+        /// </summary>
+        /// <param name="drawing"></param>
+        /// <returns></returns>
+        public static DimStyleTable GetDimStyleTable(CadDrawing drawing)
+        {
+            if (drawing.Cad_Database == null) return null;
+            if (drawing.Cad_Trans == null) return null;
+            ObjectId DimStyleTableId = drawing.Cad_Database.DimStyleTableId;
+            var Cad_DimStyleTable = (DimStyleTable)drawing.Cad_Trans.GetObject(DimStyleTableId, OpenMode.ForWrite);
+            return Cad_DimStyleTable;
+        }
+
+        /// <summary>
+        /// 设置当前层
+        /// </summary>
+        /// <param name="drawing"></param>
+        /// <param name="layer"></param>
+        public static void SetCurrentDimStyle(CadDrawing drawing, DimStyleTableRecord dimstyle)
+        {
+            if (dimstyle.ObjectId != ObjectId.Null) drawing.Cad_Database.Dimstyle = dimstyle.ObjectId;
+        }
+        public static void SetCurrentDimStyle(CadDrawing drawing, ObjectId layerObjectId)
+        {
+            if (layerObjectId != ObjectId.Null) drawing.Cad_Database.Dimstyle = layerObjectId;
+        }
+        public static void SetCurrentDimStyle(CadDrawing drawing, short colorIndex, string layerName)
+        {
+            try
+            {
+                short colorIndex1 = (short)(colorIndex % 256);//防止输入的颜色超出256 using 
+                //层表记录
+                var dimstyleTable = GetDimStyleTable(drawing);
+                if (!dimstyleTable.Has(layerName))
+                {
+
+                }
+                else
+                {
+                    DimStyleTableRecord ltr = drawing.Cad_Trans.GetObject(dimstyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
+                    SetCurrentDimStyle(drawing, ltr);
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        #endregion
+
+        #region 词典Dic
+
         /// <summary>
         /// 将当前词典序列化到DWG文件
         /// </summary>
@@ -488,11 +569,6 @@ namespace BaseOutWall.Utils
             }
         }
 
-
-
-
-
-
         /// <summary>
         /// 获取字典索引
         /// </summary>
@@ -507,6 +583,8 @@ namespace BaseOutWall.Utils
             }
             return list.ToArray();
         }
+
+        #endregion
     }
 
     public static class EntityConvert
