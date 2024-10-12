@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +74,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="OutWall.cs" />
+    <Compile Include="Utils\CadDrawing.cs" />
+    <Compile Include="Utils\CadDrawingUtils.cs" />
+    <Compile Include="Utils\CadFileIoUtils.cs" />
     <Compile Include="WaiPeiJin.cs" />
     <Compile Include="PeiJin.cs" />
     <Compile Include="Program.cs" />
