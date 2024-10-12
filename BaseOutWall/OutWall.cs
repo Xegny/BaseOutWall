@@ -38,7 +38,7 @@ namespace BaseOutWall
         #endregion
 
         #region 不同楼层的画法不同（已废除）
-        public static List<Line> LessThan4Story(Point3d point,double dianceng, double dingbiaogao, double neiqiangkuan, double xianeiqiangkuan, double waiqiangkuan, double dibanhou, List<Story> storyList)
+        public static List<Line> LessThan4Story(Point3d point, double dianceng, double dingbiaogao, double neiqiangkuan, double xianeiqiangkuan, double waiqiangkuan, double dibanhou, List<Story> storyList)
         {
             List<Line> inwallline = new List<Line>();
             double totalHeight = storyList.Sum(story => double.Parse(story.StoryHeight));
@@ -110,18 +110,18 @@ namespace BaseOutWall
         {
             Polyline breakLine = new Polyline();
             Vector2d vector2D = new Vector2d(point1.X, point1.Y);
-            breakLine.AddVertexAt(0, new Point2d(0 - 100, 0)+ vector2D, 0, 0, 0);
-            breakLine.AddVertexAt(1, new Point2d(0 + 275, 0)+ vector2D, 0, 0, 0);
-            breakLine.AddVertexAt(2, new Point2d(0 + 300, -65)+ vector2D, 0, 0, 0);
+            breakLine.AddVertexAt(0, new Point2d(0 - 100, 0) + vector2D, 0, 0, 0);
+            breakLine.AddVertexAt(1, new Point2d(0 + 275, 0) + vector2D, 0, 0, 0);
+            breakLine.AddVertexAt(2, new Point2d(0 + 300, -65) + vector2D, 0, 0, 0);
             breakLine.AddVertexAt(3, new Point2d(0 + 350, 65) + vector2D, 0, 0, 0);
-            breakLine.AddVertexAt(4, new Point2d(0 + 375, 0)+ vector2D, 0, 0, 0);
+            breakLine.AddVertexAt(4, new Point2d(0 + 375, 0) + vector2D, 0, 0, 0);
             breakLine.AddVertexAt(5, new Point2d(0 + 750, 0) + vector2D, 0, 0, 0);
             breakLine.Closed = false;
             double rotationAngle = new Line(point1, point2).Angle;
             double scaleFactor = new Line(point1, point2).Length / 650;
             // 获取多段线的插入点
             Point3d insert = new Point3d(point1.X + 100, point1.Y, 0);
-            Point3d center = new Point3d((point1.X+ point2.X)/2, (point1.Y+ point2.Y)/2, 0);
+            Point3d center = new Point3d((point1.X + point2.X) / 2, (point1.Y + point2.Y) / 2, 0);
             // 创建旋转变换矩阵
             Matrix3d rotationMatrix = Matrix3d.Rotation(rotationAngle, Vector3d.ZAxis, point1);
             // 应用旋转变换矩阵到多段线对象
@@ -179,8 +179,8 @@ namespace BaseOutWall
             double height = mtext.ActualHeight;
 
             // 根据距离调整边界框
-            double adjustedWidth = width/2 + distance;
-            double adjustedHeight = height/2 + distance;
+            double adjustedWidth = width / 2 + distance;
+            double adjustedHeight = height / 2 + distance;
 
             // 计算边界框的左下右上角点坐标
             Point3d minPoint = new Point3d(position.X - adjustedWidth, position.Y - adjustedHeight, position.Z);
@@ -198,7 +198,7 @@ namespace BaseOutWall
         #endregion
 
         #region 画对齐标注
-        public static void DrawBiaoZhu(Database db, Point3d startPoint, Point3d endPoint,double offsetdistance)
+        public static void DrawBiaoZhu(Database db, Point3d startPoint, Point3d endPoint, double offsetdistance)
         {
             //标注
 
@@ -274,7 +274,7 @@ namespace BaseOutWall
             polyline.Closed = false;
             polyline.ConstantWidth = hoopdiameter;
             return polyline;
-        } 
+        }
         #endregion
 
         #region 找哪两层中间的墙宽变化了
@@ -294,7 +294,7 @@ namespace BaseOutWall
             }
 
             return changedIndices;//i和i+1层
-        } 
+        }
         #endregion
 
         #region 画图函数，主函数
@@ -323,12 +323,12 @@ namespace BaseOutWall
             double totalHeight = storyList.Sum(story => double.Parse(story.StoryHeight));
             //1
             Line outwallline1 = new Line(
-                point + new Vector3d(0,-300,0), 
-                point + new Vector3d(0, totalHeight+ dibanhou+ dianceng, 0));
+                point + new Vector3d(0, -300, 0),
+                point + new Vector3d(0, totalHeight + dibanhou + dianceng, 0));
             outwallline1.Layer = "0S-WALL-LINE";
             //2外
-            Line outwallline2 =new Line(
-                point + new Vector3d(-waiqiangkuan, -300, 0), 
+            Line outwallline2 = new Line(
+                point + new Vector3d(-waiqiangkuan, -300, 0),
                 point + new Vector3d(-waiqiangkuan, totalHeight + dibanhou + dianceng, 0));
             outwallline2.Layer = "0S-WALL-LINE";
             //zdx
@@ -336,14 +336,14 @@ namespace BaseOutWall
                 point + new Vector3d(0, -300, 0));
             //3
             Polyline thickoutwallline = new Polyline();
-            thickoutwallline.AddVertexAt(0, new Point2d(point.X, point.Y-150), 0, 0, 0);
+            thickoutwallline.AddVertexAt(0, new Point2d(point.X, point.Y - 150), 0, 0, 0);
             thickoutwallline.AddVertexAt(1, new Point2d(point.X, point.Y + totalHeight + dibanhou + dianceng), 0, 0, 0);
             thickoutwallline.ConstantWidth = 15;
             thickoutwallline.Layer = "0S-WALL-LINE";
             //标注
             Point3d waiqiangbiaozhudian1 = point + new Vector3d(0, totalHeight + dibanhou + dianceng, 0);
             Point3d waiqiangbiaozhudian2 = point + new Vector3d(-waiqiangkuan, totalHeight + dibanhou + dianceng, 0);
-            OutWall.DrawBiaoZhu(db, waiqiangbiaozhudian1, waiqiangbiaozhudian2,-200);
+            OutWall.DrawBiaoZhu(db, waiqiangbiaozhudian1, waiqiangbiaozhudian2, -200);
 
             #endregion
 
@@ -357,7 +357,7 @@ namespace BaseOutWall
             mtextSN.Contents = "室内";
             mtextSN.TextHeight = 250;
             mtextSN.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
-            mtextSN.Location = point + new Vector3d( neiqiangkuan*1.5+900+1000+300, totalHeight * 2 / 5, 0);
+            mtextSN.Location = point + new Vector3d(neiqiangkuan * 1.5 + 900 + 1000 + 300, totalHeight * 2 / 5, 0);
             mtextSN.Layer = "0S-DETL-DIMS";
             Polyline shineikuang = DrawTextKuang(mtextSN, distance);
             shineikuang.Layer = "0S-DETL-DIMS";
@@ -367,9 +367,9 @@ namespace BaseOutWall
             mtextSW.Contents = "室外";
             mtextSW.TextHeight = 250;
             mtextSW.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
-            mtextSW.Location = point + new Vector3d(-waiqiangkuan * 2-300, totalHeight * 2 / 5, 0);
+            mtextSW.Location = point + new Vector3d(-waiqiangkuan * 2 - 300, totalHeight * 2 / 5, 0);
             mtextSW.Layer = "0S-DETL-DIMS";
-            Polyline shiwaikuang = DrawTextKuang(mtextSW,distance);//画个框
+            Polyline shiwaikuang = DrawTextKuang(mtextSW, distance);//画个框
             shiwaikuang.Layer = "0S-DETL-DIMS";
             //"地下连续墙"
             MText mtextDXLXQ = new MText();//数字
@@ -379,8 +379,8 @@ namespace BaseOutWall
             mtextDXLXQ.Attachment = AttachmentPoint.BottomRight;// 设置文本对象的插入点为文本的顶端中点
             mtextDXLXQ.Location = point + new Vector3d(-waiqiangkuan * 1.05, totalHeight * 4 / 7, 0);
             mtextDXLXQ.Layer = "0S-BEAM-TEXT";
-            Line lineDXLXQ = new Line(point + new Vector3d(-waiqiangkuan-960, totalHeight *4/7, 0)//下划线
-                , point + new Vector3d(-waiqiangkuan*7/8, totalHeight * 4 / 7, 0));
+            Line lineDXLXQ = new Line(point + new Vector3d(-waiqiangkuan - 960, totalHeight * 4 / 7, 0)//下划线
+                , point + new Vector3d(-waiqiangkuan * 7 / 8, totalHeight * 4 / 7, 0));
             lineDXLXQ.Layer = "0S-BEAM-TEXT";
             #endregion
 
@@ -398,12 +398,12 @@ namespace BaseOutWall
                 point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - dingcenggao, 0));
             dingcengwall.Layer = "0S-WALL-LINE";
             //水平配筋
-            Point3d di_midshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, totalHeight + dibanhou + dianceng - dingcenggao/2, 0);
-            Point3d di_midshuipingpeijin2 = point + new Vector3d(neiqiangkuan - (40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao/2, 0);
+            Point3d di_midshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, totalHeight + dibanhou + dianceng - dingcenggao / 2, 0);
+            Point3d di_midshuipingpeijin2 = point + new Vector3d(neiqiangkuan - (40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao / 2, 0);
             Point3d di_upshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, totalHeight + dibanhou + dianceng - dingcenggao / 2 + 200, 0);
-            Point3d di_upshuipingpeijin2 = point + new Vector3d(neiqiangkuan-(40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao / 2 + 200, 0);
+            Point3d di_upshuipingpeijin2 = point + new Vector3d(neiqiangkuan - (40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao / 2 + 200, 0);
             Point3d di_downshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, totalHeight + dibanhou + dianceng - dingcenggao / 2 - 200, 0);
-            Point3d di_downshuipingpeijin2 = point + new Vector3d(neiqiangkuan-(40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao / 2 - 200, 0);
+            Point3d di_downshuipingpeijin2 = point + new Vector3d(neiqiangkuan - (40 + 5 + 20), totalHeight + dibanhou + dianceng - dingcenggao / 2 - 200, 0);
             //
             Polyline di_midcircle1 = new Polyline();
             di_midcircle1.AddVertexAt(0, new Point2d(di_midshuipingpeijin1.X - 10, di_midshuipingpeijin1.Y), 1, 0, 0);
@@ -487,15 +487,15 @@ namespace BaseOutWall
                 }
                 //水平配筋
                 Point3d midshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, qiangjiaogaodu + danyuancenggao / 2, 0);
-                Point3d midshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan-(40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2, 0);
-                Point3d upshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, qiangjiaogaodu + danyuancenggao / 2+200, 0);
-                Point3d upshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan - (40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2+200, 0);
-                Point3d downshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, qiangjiaogaodu + danyuancenggao / 2-200, 0);
-                Point3d downshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan - (40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2-200, 0);                
+                Point3d midshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan - (40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2, 0);
+                Point3d upshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, qiangjiaogaodu + danyuancenggao / 2 + 200, 0);
+                Point3d upshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan - (40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2 + 200, 0);
+                Point3d downshuipingpeijin1 = point + new Vector3d(40 + 5 + 20, qiangjiaogaodu + danyuancenggao / 2 - 200, 0);
+                Point3d downshuipingpeijin2 = point + new Vector3d(danyuanqiangkuan - (40 + 5 + 20), qiangjiaogaodu + danyuancenggao / 2 - 200, 0);
                 //
                 Polyline midcircle1 = new Polyline();
-                midcircle1.AddVertexAt(0, new Point2d(midshuipingpeijin1.X-10, midshuipingpeijin1.Y), 1, 0, 0);
-                midcircle1.AddVertexAt(1, new Point2d(midshuipingpeijin1.X+10, midshuipingpeijin1.Y), 1, 0, 0);             
+                midcircle1.AddVertexAt(0, new Point2d(midshuipingpeijin1.X - 10, midshuipingpeijin1.Y), 1, 0, 0);
+                midcircle1.AddVertexAt(1, new Point2d(midshuipingpeijin1.X + 10, midshuipingpeijin1.Y), 1, 0, 0);
                 midcircle1.Closed = true;
                 midcircle1.ConstantWidth = 20;
                 neiqiangpeijin.Add(midcircle1);
@@ -569,7 +569,7 @@ namespace BaseOutWall
             mtextLaE.Layer = "0S-BEAM-TEXT";
             //折断线
             Polyline dibanzdx = ZheDuanXian(point + new Vector3d(neiqiangkuan0 + 900, 0, 0),
-                point + new Vector3d(neiqiangkuan0 + 900, dibanhou + dianceng,0));
+                point + new Vector3d(neiqiangkuan0 + 900, dibanhou + dianceng, 0));
             #region 画标高          
             Point3d pointbioagao1 = point + new Vector3d(neiqiangkuan0 + 900 + 300, dibanhou + dianceng, 0);
             //线
@@ -584,20 +584,20 @@ namespace BaseOutWall
             //文字
             MText mtext1 = new MText();//数字
             mtext1.SetDatabaseDefaults();
-            mtext1.Contents = storyList[storyList.Count-1].StoryElevation + "(相对标高)";
+            mtext1.Contents = storyList[storyList.Count - 1].StoryElevation + "(相对标高)";
             mtext1.TextHeight = 250;
             mtext1.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
             mtext1.Location = pointbioagao1 + new Vector3d(600, 400, 0);
             mtext1.Layer = "0S-BEAM-TEXT";
             MText mtext11 = new MText();//层号
             mtext11.SetDatabaseDefaults();
-            mtext11.Contents = "B"+ storyList.Count.ToString();
+            mtext11.Contents = "B" + storyList.Count.ToString();
             mtext11.TextHeight = 250;
             mtext11.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
             mtext11.Location = pointbioagao1 + new Vector3d(600, 700, 0);
             mtext11.Layer = "0S-BEAM-TEXT";
             #endregion
-            
+
             #endregion
 
             #region 顶板
@@ -629,7 +629,7 @@ namespace BaseOutWall
             mtext2.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
             mtext2.Location = pointbioagao2 + new Vector3d(600, 400, 0);
             mtext2.Layer = "0S-BEAM-TEXT";
-            
+
             #endregion
 
             Line dingbandown = new Line(
@@ -650,7 +650,7 @@ namespace BaseOutWall
             List<Polyline> fujiajin = new List<Polyline>();
             for (int i = 1; i < storyList.Count; i++)
             {
-                double dingduanjuli = Math.Abs(double.Parse(storyList[i-1].StoryElevation)*1000 - dingbiaogao);
+                double dingduanjuli = Math.Abs(double.Parse(storyList[i - 1].StoryElevation) * 1000 - dingbiaogao);
                 double banhou = double.Parse(storyList[i].SlabT);
 
                 neiqiangkuan = Double.Parse(storyList[i].WallThickness);
@@ -659,7 +659,7 @@ namespace BaseOutWall
                     point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - dingduanjuli, 0),
                     point + new Vector3d(neiqiangkuan + 900, totalHeight + dibanhou + dianceng - dingduanjuli, 0));
                 uplouban.Layer = "0S-WALL-LINE";
-                uploubanlist.Add(uplouban);       
+                uploubanlist.Add(uplouban);
                 #region 画标高          
                 Point3d pointbioagao = point + new Vector3d(neiqiangkuan + 900 + 300, totalHeight + dibanhou + dianceng - dingduanjuli, 0);
                 //线
@@ -675,7 +675,7 @@ namespace BaseOutWall
                 //文字
                 MText mtext = new MText();//数字
                 mtext.SetDatabaseDefaults();
-                mtext.Contents = "B"+i.ToString();
+                mtext.Contents = "B" + i.ToString();
                 mtext.TextHeight = 250;
                 mtext.Attachment = AttachmentPoint.MiddleCenter;// 设置文本对象的插入点为文本的顶端中点
                 mtext.Location = pointbioagao + new Vector3d(600, 700, 0);
@@ -692,8 +692,8 @@ namespace BaseOutWall
                 #endregion
                 //楼板的下边那条线
                 Line downlouban = new Line(
-                    point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - dingduanjuli- banhou, 0),
-                    point + new Vector3d(neiqiangkuan + 900, totalHeight + dibanhou + dianceng - dingduanjuli- banhou, 0));
+                    point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - dingduanjuli - banhou, 0),
+                    point + new Vector3d(neiqiangkuan + 900, totalHeight + dibanhou + dianceng - dingduanjuli - banhou, 0));
                 downlouban.Layer = "0S-WALL-LINE";
                 downloubanlist.Add(downlouban);
                 //板厚标注
@@ -705,8 +705,8 @@ namespace BaseOutWall
                             point + new Vector3d(neiqiangkuan + 900, totalHeight + dibanhou + dianceng - dingduanjuli, 0));
                 zhongjianzdx.Add(zdx);
                 //楼板处的附加筋
-                double shangmaogu = Double.Parse(storyList[i-1].StoryHeight)/3;
-                double xiamaogu = Double.Parse(storyList[i].StoryHeight)/3;
+                double shangmaogu = Double.Parse(storyList[i - 1].StoryHeight) / 3;
+                double xiamaogu = Double.Parse(storyList[i].StoryHeight) / 3;
                 Vector2d vector2Dtemp = new Vector2d(point.X, point.Y);
                 Polyline fujia = new Polyline();
                 fujia.AddVertexAt(0, new Point2d(40 + 30 + 60, totalHeight + dibanhou + dianceng - dingduanjuli - banhou - xiamaogu + 60) + vector2Dtemp, 0, 0, 0);
@@ -739,11 +739,11 @@ namespace BaseOutWall
             mtextSTDC.Contents = "素砼垫层";
             mtextSTDC.TextHeight = 200;
             mtextSTDC.Attachment = AttachmentPoint.BottomCenter;// 设置文本对象的插入点为文本的顶端中点
-            mtextSTDC.Location = point + new Vector3d((neiqiangkuan + 900)*0.75, -400, 0);
+            mtextSTDC.Location = point + new Vector3d((neiqiangkuan + 900) * 0.75, -400, 0);
             mtextSTDC.Layer = "0S-BEAM-TEXT";
             //引线
             Polyline stdc = new Polyline();
-            stdc.AddVertexAt(0, new Point2d(point.X+ (neiqiangkuan + 900)/2-100, point.Y), 0, 0, 0);
+            stdc.AddVertexAt(0, new Point2d(point.X + (neiqiangkuan + 900) / 2 - 100, point.Y), 0, 0, 0);
             stdc.AddVertexAt(1, new Point2d(point.X + (neiqiangkuan + 900) / 2, point.Y - 400), 0, 0, 0);
             stdc.AddVertexAt(2, new Point2d(point.X + neiqiangkuan + 900, point.Y - 400), 0, 0, 0);
             stdc.Closed = false;
@@ -751,14 +751,14 @@ namespace BaseOutWall
             //标注
             Point3d diancengbiaozhudian1 = point + new Vector3d(neiqiangkuan + 900, dianceng, 0);
             Point3d diancengbiaozhudian2 = point + new Vector3d(neiqiangkuan + 900, 0, 0);
-            OutWall.DrawBiaoZhu(db, diancengbiaozhudian1, diancengbiaozhudian2, 500);  
-                
+            OutWall.DrawBiaoZhu(db, diancengbiaozhudian1, diancengbiaozhudian2, 500);
+
             #region 填充的边界
             // 添加边界路径
             Polyline boundary = new Polyline();
-            boundary.AddVertexAt(0, new Point2d(point.X, point.Y+dianceng), 0, 0, 0);
-            boundary.AddVertexAt(1, new Point2d(point.X+neiqiangkuan + 900, point.Y+dianceng), 0, 0, 0);
-            boundary.AddVertexAt(2, new Point2d(point.X+neiqiangkuan + 900, point.Y), 0, 0, 0);
+            boundary.AddVertexAt(0, new Point2d(point.X, point.Y + dianceng), 0, 0, 0);
+            boundary.AddVertexAt(1, new Point2d(point.X + neiqiangkuan + 900, point.Y + dianceng), 0, 0, 0);
+            boundary.AddVertexAt(2, new Point2d(point.X + neiqiangkuan + 900, point.Y), 0, 0, 0);
             boundary.AddVertexAt(3, new Point2d(point.X, point.Y), 0, 0, 0);
             boundary.AddVertexAt(4, new Point2d(point.X, point.Y + dianceng), 0, 0, 0);
             boundary.Closed = true;
@@ -772,10 +772,10 @@ namespace BaseOutWall
             Vector2d vector2D = new Vector2d(point.X, point.Y);
             //外层钢筋
             Polyline waitongchang = new Polyline();
-            waitongchang.AddVertexAt(0, new Point2d(neiqiangkuan0 + 900 - 70, dianceng+20)+ vector2D, 0, 0, 0);
+            waitongchang.AddVertexAt(0, new Point2d(neiqiangkuan0 + 900 - 70, dianceng + 20) + vector2D, 0, 0, 0);
             waitongchang.AddVertexAt(1, new Point2d(40, dianceng + 20) + vector2D, 0, 0, 0);
             waitongchang.AddVertexAt(2, new Point2d(40, totalHeight + dibanhou + dianceng - 20) + vector2D, 0, 0, 0);
-            waitongchang.AddVertexAt(3, new Point2d(40+60, totalHeight + dibanhou + dianceng - 20)+ vector2D, 0, 0, 0);
+            waitongchang.AddVertexAt(3, new Point2d(40 + 60, totalHeight + dibanhou + dianceng - 20) + vector2D, 0, 0, 0);
             waitongchang.Closed = false;
             waitongchang.Layer = "0S-DETL-RBAR";
             waitongchang.ConstantWidth = 10;
@@ -789,7 +789,7 @@ namespace BaseOutWall
             neitongchang.Layer = "0S-DETL-RBAR";
             neitongchang.ConstantWidth = 10;
             //底板处的附加筋
-            double maogu = Double.Parse(storyList[storyList.Count - 1].StoryHeight)/3;
+            double maogu = Double.Parse(storyList[storyList.Count - 1].StoryHeight) / 3;
             Polyline dibufujia = new Polyline();
             dibufujia.AddVertexAt(0, new Point2d(neiqiangkuan0 + 900 - 70, dianceng + 50) + vector2D, 0, 0, 0);
             dibufujia.AddVertexAt(1, new Point2d(40 + 30, dianceng + 50) + vector2D, 0, 0, 0);
@@ -805,23 +805,23 @@ namespace BaseOutWall
             #endregion
 
             #region 图名区
-            Vector3d vector3D = new Vector3d(point.X,point.Y,0);
+            Vector3d vector3D = new Vector3d(point.X, point.Y, 0);
             //图名
             MText mtextTM = new MText();//数字
             mtextTM.SetDatabaseDefaults();
             mtextTM.Contents = "WA";
             mtextTM.TextHeight = 400;
             mtextTM.Attachment = AttachmentPoint.BottomCenter;// 设置文本对象的插入点为文本的顶端中点
-            mtextTM.Location = new Point3d(450, -900, 0)+ vector3D;
+            mtextTM.Location = new Point3d(450, -900, 0) + vector3D;
             mtextTM.Layer = "0S-BEAM-TEXT";
             //下划线
             Polyline xhx = new Polyline();
-            xhx.AddVertexAt(0, new Point2d(point.X+300, point.Y - 900), 0, 0, 0);
-            xhx.AddVertexAt(1, new Point2d(point.X+600, point.Y - 900), 0, 0, 0);
+            xhx.AddVertexAt(0, new Point2d(point.X + 300, point.Y - 900), 0, 0, 0);
+            xhx.AddVertexAt(1, new Point2d(point.X + 600, point.Y - 900), 0, 0, 0);
             xhx.Closed = false;
             xhx.Layer = "0S-DETL-SYMB";
             xhx.ConstantWidth = 10;
-            Line lineXHX = new Line(new Point3d(300, -900-20, 0) + vector3D, new Point3d(600, -900-20, 0) + vector3D);
+            Line lineXHX = new Line(new Point3d(300, -900 - 20, 0) + vector3D, new Point3d(600, -900 - 20, 0) + vector3D);
             lineXHX.Layer = "0S-DETL-SYMB";
             #endregion
 
@@ -894,7 +894,7 @@ namespace BaseOutWall
                 tr.AddNewlyCreatedDBObject(waiqiangzdx, true);
                 btr.AppendEntity(inwallline2);
                 tr.AddNewlyCreatedDBObject(inwallline2, true);
-                btr.AppendEntity(diban); 
+                btr.AppendEntity(diban);
                 tr.AddNewlyCreatedDBObject(diban, true);
                 btr.AppendEntity(dibanzdx);
                 tr.AddNewlyCreatedDBObject(dibanzdx, true);
@@ -986,7 +986,7 @@ namespace BaseOutWall
                 #region 画内墙
                 btr.AppendEntity(dingcengwall);
                 tr.AddNewlyCreatedDBObject(dingcengwall, true);
-                
+
                 foreach (Line line in insidewall)
                 {
                     btr.AppendEntity(line);
@@ -1013,7 +1013,7 @@ namespace BaseOutWall
                 {
                     btr.AppendEntity(line);
                     tr.AddNewlyCreatedDBObject(line, true);
-                } 
+                }
                 #endregion
 
                 foreach (Line line in uploubanlist)
@@ -1057,8 +1057,8 @@ namespace BaseOutWall
 
                 // Dispose the MText object
                 mtextDXLXQ.Dispose();
-            } 
-            
+            }
+
             #endregion
 
             m_DocumentLock.Dispose();//一定要记得解锁

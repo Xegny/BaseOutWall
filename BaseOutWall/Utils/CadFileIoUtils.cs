@@ -403,18 +403,22 @@ namespace BaseOutWall.Utils
             if (!dimStyleTable.Has(layerName))
             {
                 var dstr = new DimStyleTableRecord();
-                dstr.Name = layerName;
                 //dstr.Color = Color.FromColorIndex(ColorMethod.ByColor, colorIndex1);
                 dstr.Name = layerName;
+                // 设置尺寸样式的属性
+                dstr.Dimtxt = 2.5; // 文本高度
+                dstr.Dimasz = 2.5; // 箭头大小
+                dstr.Dimtsz = 1.0; // 标准字体的大小
                 dstr.Dimscale = 1.0;
+                var newDimStyleId = dimStyleTable.Add(dstr);
                 drawing.Cad_Trans.AddNewlyCreatedDBObject(dstr, true);
-                SetCurrentDimStyle(drawing, dstr);
+                //SetCurrentDimStyle(drawing, dstr);
             }
             else
             {
-                DimStyleTableRecord dstr = drawing.Cad_Trans.GetObject(dimStyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
-                if (dstr != null)
-                    SetCurrentDimStyle(drawing, dstr);
+                //DimStyleTableRecord dstr = drawing.Cad_Trans.GetObject(dimStyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
+                //if (dstr != null)
+                //    SetCurrentDimStyle(drawing, dstr);
             }
         }
 
@@ -439,7 +443,7 @@ namespace BaseOutWall.Utils
         /// <param name="layer"></param>
         public static void SetCurrentDimStyle(CadDrawing drawing, DimStyleTableRecord dimstyle)
         {
-            if (dimstyle.ObjectId != ObjectId.Null) drawing.Cad_Database.Dimstyle = dimstyle.ObjectId;
+            //if (dimstyle.ObjectId != ObjectId.Null) drawing.Cad_Database.Dimstyle Dimstyle = dimstyle.ObjectId;
         }
         public static void SetCurrentDimStyle(CadDrawing drawing, ObjectId layerObjectId)
         {
@@ -458,8 +462,8 @@ namespace BaseOutWall.Utils
                 }
                 else
                 {
-                    DimStyleTableRecord ltr = drawing.Cad_Trans.GetObject(dimstyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
-                    SetCurrentDimStyle(drawing, ltr);
+                    //DimStyleTableRecord ltr = drawing.Cad_Trans.GetObject(dimstyleTable[layerName], OpenMode.ForWrite) as DimStyleTableRecord;
+                    //SetCurrentDimStyle(drawing, ltr);
                 }
             }
             catch (Exception ex)
