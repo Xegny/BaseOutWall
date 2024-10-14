@@ -23,8 +23,8 @@ namespace BaseOutWall
 
             //dataGridView1.RowHeadersVisible = false;
             dataGridView1.Rows[0].Cells[0].Value = "-1";
-            dataGridView1.Rows.Add("-1", "-3","3000","200","400","2000","1500");
-            dataGridView1.Rows.Add("-1", "-6", "3000", "200","400", "2000", "1500");
+            dataGridView1.Rows.Add("-1", "-3", "3000", "200", "400", "2000", "1500");
+            dataGridView1.Rows.Add("-1", "-6", "3000", "200", "400", "2000", "1500");
             this.comboBox1.SelectedIndex = 4;
             this.comboBox2.SelectedIndex = 1;
             this.Boundaryconditions.SelectedIndex = 0;
@@ -80,7 +80,7 @@ namespace BaseOutWall
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // 检查是否是目标列的索引
-            if (e.ColumnIndex == 0 )
+            if (e.ColumnIndex == 0)
             {
                 // 设置单元格的显示值
                 e.Value = (-(e.RowIndex + 1)).ToString();
@@ -90,37 +90,43 @@ namespace BaseOutWall
 
         private void button1_Click(object sender, EventArgs e)//绘图
         {
-            
-            //固定参数
-            double dianceng = Double.Parse(text_dianceng.Text);
-            double dingbiaogao = Double.Parse(text_dingbiaogao.Text);
-            double waiqiangkuan = Double.Parse(text_waiqiangkuan.Text); 
-            double dibanhou = Double.Parse(text_dibanhou.Text);
+            try
+            { 
+                //固定参数
+                double dianceng = Double.Parse(text_dianceng.Text);
+                double dingbiaogao = Double.Parse(text_dingbiaogao.Text);
+                double waiqiangkuan = Double.Parse(text_waiqiangkuan.Text);
+                double dibanhou = Double.Parse(text_dibanhou.Text);
 
-            //将随数据表的可变参数，每一行是一个对象
-            List<Story> storyList = new List<Story>();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (!row.IsNewRow)
+                //将随数据表的可变参数，每一行是一个对象
+                List<Story> storyList = new List<Story>();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    Story story = new Story();
-                    story.StoryNum = row.Cells["Column1"].FormattedValue.ToString();
-                    story.StoryElevation = row.Cells["Column2"].Value.ToString();
-                    story.StoryHeight = row.Cells["Column3"].Value.ToString();
-                    story.SlabT = row.Cells["Column4"].Value.ToString();
-                    story.WallThickness = row.Cells["Column5"].Value.ToString();
-                    story.SlabRebarArea = row.Cells["Column6"].Value.ToString();
-                    story.MidwallRebarArea = row.Cells["Column7"].Value.ToString();
-                    storyList.Add(story);
+                    if (!row.IsNewRow)
+                    {
+                        Story story = new Story();
+                        story.StoryNum = row.Cells["Column1"].FormattedValue.ToString();
+                        story.StoryElevation = row.Cells["Column2"].Value.ToString();
+                        story.StoryHeight = row.Cells["Column3"].Value.ToString();
+                        story.SlabT = row.Cells["Column4"].Value.ToString();
+                        story.WallThickness = row.Cells["Column5"].Value.ToString();
+                        story.SlabRebarArea = row.Cells["Column6"].Value.ToString();
+                        story.MidwallRebarArea = row.Cells["Column7"].Value.ToString();
+                        storyList.Add(story);
+                    }
                 }
+                double neiqiangkuan = Double.Parse(storyList[0].WallThickness);
+                double xianeiqiangkuan = Double.Parse(storyList[storyList.Count - 1].WallThickness);
+
+                this.Hide();
+
+                //运行画图函数
+                OutWall.CreateOutWall(dianceng, dingbiaogao, neiqiangkuan, xianeiqiangkuan, waiqiangkuan, dibanhou, storyList);
             }
-            double neiqiangkuan = Double.Parse(storyList[0].WallThickness);
-            double xianeiqiangkuan = Double.Parse(storyList[storyList.Count - 1].WallThickness);
-
-            this.Hide();
-
-            //运行画图函数
-            OutWall.CreateOutWall(dianceng, dingbiaogao, neiqiangkuan, xianeiqiangkuan,waiqiangkuan, dibanhou,storyList);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            } 
         }
 
         private void button2_Click(object sender, EventArgs e)//删除层
@@ -181,25 +187,25 @@ namespace BaseOutWall
                 for (int j = 100; j <= 200; j += 50)
                 {
                     // 在这里使用 i 和 j 进行需要的配筋操作
-                    if (i * j> maxMidwallRebarArea)
+                    if (i * j > maxMidwallRebarArea)
                     {
                         double duoyu = i * j - maxMidwallRebarArea;
-                        PeiJin peijin = new PeiJin(i,j, duoyu);
-                        potentialResults.Add(peijin);  
-                    }                    
+                        PeiJin peijin = new PeiJin(i, j, duoyu);
+                        potentialResults.Add(peijin);
+                    }
                 }
             }
             var sortedResults = potentialResults.OrderBy(result => result.Duoyu);
             //结果1：最省的内侧配筋方案
             var minDuoyuPeijin = sortedResults.FirstOrDefault();
-            if (minDuoyuPeijin==null)
+            if (minDuoyuPeijin == null)
             {
                 MessageBox.Show("寻找方案失败！");
             }
             // 创建一个新的 ListViewItem 对象
             ListViewItem item1 = new ListViewItem();
             // 将 minDuoyuPeijin 对象的属性添加到第一行的第一格
-            item1.Text = minDuoyuPeijin.Zhijin.ToString()+"@"+ minDuoyuPeijin.Jianju.ToString();
+            item1.Text = minDuoyuPeijin.Zhijin.ToString() + "@" + minDuoyuPeijin.Jianju.ToString();
             // 将 ListViewItem 添加到 ListView 的项集合中
             // listView_Reinforcement.Items.Add(item1);
 
@@ -208,7 +214,7 @@ namespace BaseOutWall
 
             //枚举法找到需要加设附加筋的楼板
             List<WaiPeiJin> geceng_minDuoyuPeijin = new List<WaiPeiJin>();
-            int jishuqi=0;
+            int jishuqi = 0;
             for (int i = 0; i < storyList.Count; i++)
             {
                 double fujiagangjinmianji = Double.Parse(storyList[i].SlabRebarArea) - tongchanggangjinmianji;
@@ -241,7 +247,7 @@ namespace BaseOutWall
                 geceng_minDuoyuPeijin.Add(minDuoyuPeijin3);
 
             }
-            if (jishuqi >0)
+            if (jishuqi > 0)
             {
                 MessageBox.Show("寻找方案失败！");
             }
@@ -252,11 +258,11 @@ namespace BaseOutWall
                 ListViewItem item = new ListViewItem();
 
                 // 将 obj 对象的属性添加到第二行的每个格子中
-                item.Text=obj.Zhijin.ToString() + "@" + obj.Jianju.ToString();
+                item.Text = obj.Zhijin.ToString() + "@" + obj.Jianju.ToString();
                 // 添加更多属性...
 
                 // 将 ListViewItem 添加到 ListView 的项集合中
-               // listView_Reinforcement.Items.Add(item);
+                // listView_Reinforcement.Items.Add(item);
             }
 
 
@@ -374,17 +380,17 @@ namespace BaseOutWall
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             int BoundaryIndex = this.Boundaryconditions.SelectedIndex = 1;
-          
-            if (BoundaryIndex==1)
+
+            if (BoundaryIndex == 1)
             {
-                this.radioButton6.Visible =true;
+                this.radioButton6.Visible = true;
                 this.radioButton7.Visible = true;
                 this.label14.Visible = true;
                 this.textBox7.Visible = true;
                 this.label15.Visible = true;
                 this.textBox8.Visible = true;
             }
-            else if (BoundaryIndex ==  0)
+            else if (BoundaryIndex == 0)
             {
                 this.radioButton6.Visible = false;
                 this.radioButton7.Visible = false;

@@ -390,7 +390,7 @@ namespace BaseOutWall
             Line inwallline2 = new Line(
                 point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - banhou1, 0),
                 point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng, 0));
-            inwallline2.Linetype = "HIDDEN";
+            //inwallline2.Linetype = "HIDDEN";
             inwallline2.Layer = "0S-WALL-LINE";
             //顶层墙
             Line dingcengwall = new Line(
@@ -908,20 +908,21 @@ namespace BaseOutWall
                 tr.AddNewlyCreatedDBObject(biaogaoyouxiexian1, true);
 
                 #region 文本
-                //获取文本样式表
-                TextStyleTable textStyleTable = (TextStyleTable)db.TextStyleTableId.GetObject(OpenMode.ForWrite);
-                //获取文件中的“XD2008”styles
-                TextStyleTableRecord textStyleObj = (TextStyleTableRecord)tr.GetObject(textStyleTable["盈建科标注"], OpenMode.ForRead);
-                mtext1.TextStyleId = textStyleObj.ObjectId;
-                mtext11.TextStyleId = textStyleObj.ObjectId;
-                mtext2.TextStyleId = textStyleObj.ObjectId;
-                mtextSTDC.TextStyleId = textStyleObj.ObjectId;
-                mtextDB.TextStyleId = textStyleObj.ObjectId;
-                mtextTM.TextStyleId = textStyleObj.ObjectId;
-                mtextLaE.TextStyleId = textStyleObj.ObjectId;
-                mtextSN.TextStyleId = textStyleObj.ObjectId;
-                mtextSW.TextStyleId = textStyleObj.ObjectId;
-                mtextDXLXQ.TextStyleId = textStyleObj.ObjectId;
+                ////获取文本样式表
+                ///
+                //TextStyleTable textStyleTable = (TextStyleTable)db.TextStyleTableId.GetObject(OpenMode.ForWrite);
+                ////获取文件中的“XD2008”styles
+                //TextStyleTableRecord textStyleObj = (TextStyleTableRecord)tr.GetObject(textStyleTable["盈建科标注"], OpenMode.ForRead);
+                //mtext1.TextStyleId = textStyleObj.ObjectId;
+                //mtext11.TextStyleId = textStyleObj.ObjectId;
+                //mtext2.TextStyleId = textStyleObj.ObjectId;
+                //mtextSTDC.TextStyleId = textStyleObj.ObjectId;
+                //mtextDB.TextStyleId = textStyleObj.ObjectId;
+                //mtextTM.TextStyleId = textStyleObj.ObjectId;
+                //mtextLaE.TextStyleId = textStyleObj.ObjectId;
+                //mtextSN.TextStyleId = textStyleObj.ObjectId;
+                //mtextSW.TextStyleId = textStyleObj.ObjectId;
+                //mtextDXLXQ.TextStyleId = textStyleObj.ObjectId;
                 btr.AppendEntity(mtext1);
                 tr.AddNewlyCreatedDBObject(mtext1, true);
                 btr.AppendEntity(mtext11);
@@ -1049,7 +1050,7 @@ namespace BaseOutWall
 
                 foreach (MText mtext in biaogaotextlist)
                 {
-                    mtext.TextStyleId = textStyleObj.ObjectId;
+                    //mtext.TextStyleId = textStyleObj.ObjectId;
                     btr.AppendEntity(mtext);
                     tr.AddNewlyCreatedDBObject(mtext, true);
                 }
