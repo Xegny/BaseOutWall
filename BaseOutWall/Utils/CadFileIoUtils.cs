@@ -23,6 +23,56 @@ namespace BaseOutWall.Utils
         #region 图层Layer
 
         /// <summary>
+        /// 默认图层 ，标注， 字体样式，线型
+        /// </summary>
+        public static void AddDefaultSetting()
+        {
+            var doc = mgdApplication.DocumentManager.MdiActiveDocument;
+            var ed = doc.Editor;
+            var db = doc.Database;
+
+            CadDrawing.Current.Start();
+            if (CadDrawing.Current.IsActiveDrawing())
+            {
+                using (DocumentLock doclock = doc.LockDocument())
+                {
+
+                    using (var tr = CadDrawing.Current.StartTrans())
+                    {
+
+                        #region 默认图层
+
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)1, "0S-WALL-LINE", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)2, "0S-WALL-DIMS", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)3, "0S-BEAM-TEXT", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)4, "0S-DETL-SYMB", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)5, "0S-DETL-RBAR", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)6, "0S-DETL-SYMB", false);
+                        CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)7, "0S-DETL-DIMS", false);
+                        //CadFileIoUtils.CadDrawingUtils_AddLayer(CadDrawing.Current, (short)5, "", false); 
+                        #endregion
+
+                        #region 默认标注
+
+                        CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100");
+
+                        #endregion
+
+                        #region 默认字体
+
+                        #endregion
+
+                        #region 默认线型
+
+                        #endregion
+
+                        tr.Commit();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 目前发生在Update之前
         /// </summary>
         public static void AddDefaultLayer()
