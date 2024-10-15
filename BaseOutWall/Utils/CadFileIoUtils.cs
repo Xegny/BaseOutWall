@@ -12,6 +12,7 @@ using System.Windows;
 using System.Reflection;
 using System.Windows.Markup;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BaseOutWall.Utils
 {
@@ -63,6 +64,12 @@ namespace BaseOutWall.Utils
                         #endregion
 
                         #region 默认线型
+
+                        var dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                        var linetypeFile = Path.Combine(dir, "acad.lin"); // Hidden线型在acad.lin文件中定义
+                        var linetypeName = "HIDDEN";
+                        CadFileIoUtils.CadDrawingUtils_AddLineType(CadDrawing.Current, "acad.lin", linetypeName);
+
 
                         #endregion
 
@@ -366,6 +373,7 @@ namespace BaseOutWall.Utils
             var Cad_LayerTable = (LayerTable)drawing.Cad_Trans.GetObject(LayerTableId, OpenMode.ForWrite);
             return Cad_LayerTable;
         }
+
         /// <summary>
         /// 获取层表记录并且可用（读写）
         /// </summary>
@@ -436,6 +444,37 @@ namespace BaseOutWall.Utils
             return cLayerId;
         }
 
+
+        #endregion
+
+        #region 线型LineType
+
+        public static void CadDrawingUtils_AddLineType(CadDrawing drawing, string linetypeFile, string linetypeName)
+        {
+            var db = drawing.Cad_Database;
+            var tr = drawing.Cad_Trans;
+            var lt = GetLineTypeTables(drawing);
+
+            if (!lt.Has("HIDDEN"))
+            {
+                if (System.IO.File.Exists(linetypeFile))
+                {
+                    db.LoadLineTypeFile(linetypeName, linetypeFile);
+                }
+                else
+                {
+                    //Application.ShowAlertDialog("Linetype file not found.");
+                }
+            }
+        }
+
+        public static LinetypeTable GetLineTypeTables(CadDrawing drawing)
+        {
+            var db = drawing.Cad_Database;
+            var tr = drawing.Cad_Trans;
+            LinetypeTable lt = tr.GetObject(db.LinetypeTableId, OpenMode.ForWrite) as LinetypeTable;
+            return lt;
+        }
 
         #endregion
 

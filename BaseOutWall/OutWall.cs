@@ -390,7 +390,7 @@ namespace BaseOutWall
             Line inwallline2 = new Line(
                 point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng - banhou1, 0),
                 point + new Vector3d(neiqiangkuan, totalHeight + dibanhou + dianceng, 0));
-            //inwallline2.Linetype = "HIDDEN";
+            inwallline2.Linetype = "HIDDEN";
             inwallline2.Layer = "0S-WALL-LINE";
             //顶层墙
             Line dingcengwall = new Line(
