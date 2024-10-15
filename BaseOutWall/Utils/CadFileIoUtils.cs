@@ -54,7 +54,7 @@ namespace BaseOutWall.Utils
 
                         #region 默认标注
 
-                        CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100");
+                        CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100", 300);
 
                         #endregion
 
@@ -445,7 +445,7 @@ namespace BaseOutWall.Utils
 
         #region 标注DimStyle
 
-        public static void CadDrawingUtils_AddDimStyle(CadDrawing drawing, short colorIndex, string layerName)
+        public static void CadDrawingUtils_AddDimStyle(CadDrawing drawing, short colorIndex, string layerName, double textHeight)
         {
             short colorIndex1 = (short)(colorIndex % 256);//防止输入的颜色超出256 using 
 
@@ -456,7 +456,7 @@ namespace BaseOutWall.Utils
                 //dstr.Color = Color.FromColorIndex(ColorMethod.ByColor, colorIndex1);
                 dstr.Name = layerName;
                 // 设置尺寸样式的属性
-                dstr.Dimtxt = 2.5; // 文本高度
+                dstr.Dimtxt = textHeight;// 2.5; // 文本高度
                 dstr.Dimasz = 2.5; // 箭头大小
                 dstr.Dimtsz = 1.0; // 标准字体的大小
                 dstr.Dimscale = 1.0;
