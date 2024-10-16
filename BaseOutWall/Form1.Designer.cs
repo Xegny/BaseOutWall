@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.text_dianceng = new System.Windows.Forms.TextBox();
@@ -54,7 +54,7 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.DelRowButton = new System.Windows.Forms.Button();
             this.addRowButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -179,6 +179,9 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportTableButton = new System.Windows.Forms.Button();
+            this.ClearTableButton = new System.Windows.Forms.Button();
+            this.ExportTableButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -406,15 +409,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // DelRowButton
             // 
-            this.button2.Location = new System.Drawing.Point(395, 486);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 27);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "删除层";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DelRowButton.Location = new System.Drawing.Point(270, 518);
+            this.DelRowButton.Name = "DelRowButton";
+            this.DelRowButton.Size = new System.Drawing.Size(90, 27);
+            this.DelRowButton.TabIndex = 33;
+            this.DelRowButton.Text = "删除层";
+            this.DelRowButton.UseVisualStyleBackColor = true;
+            this.DelRowButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // addRowButton
             // 
@@ -1582,14 +1585,14 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView2.Location = new System.Drawing.Point(286, 4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
@@ -1659,14 +1662,14 @@
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView3.Location = new System.Drawing.Point(803, 227);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
@@ -1720,16 +1723,49 @@
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.Width = 75;
             // 
+            // ImportTableButton
+            // 
+            this.ImportTableButton.Location = new System.Drawing.Point(467, 485);
+            this.ImportTableButton.Name = "ImportTableButton";
+            this.ImportTableButton.Size = new System.Drawing.Size(90, 27);
+            this.ImportTableButton.TabIndex = 41;
+            this.ImportTableButton.Text = "导入表";
+            this.ImportTableButton.UseVisualStyleBackColor = true;
+            this.ImportTableButton.Click += new System.EventHandler(this.ImportTableButton_Click);
+            // 
+            // ClearTableButton
+            // 
+            this.ClearTableButton.Location = new System.Drawing.Point(368, 485);
+            this.ClearTableButton.Name = "ClearTableButton";
+            this.ClearTableButton.Size = new System.Drawing.Size(90, 60);
+            this.ClearTableButton.TabIndex = 42;
+            this.ClearTableButton.Text = "清空表";
+            this.ClearTableButton.UseVisualStyleBackColor = true;
+            this.ClearTableButton.Click += new System.EventHandler(this.ClearTableButton_Click);
+            // 
+            // ExportTableButton
+            // 
+            this.ExportTableButton.Location = new System.Drawing.Point(467, 518);
+            this.ExportTableButton.Name = "ExportTableButton";
+            this.ExportTableButton.Size = new System.Drawing.Size(90, 27);
+            this.ExportTableButton.TabIndex = 43;
+            this.ExportTableButton.Text = "导出表";
+            this.ExportTableButton.UseVisualStyleBackColor = true;
+            this.ExportTableButton.Click += new System.EventHandler(this.ExportTableButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 550);
+            this.Controls.Add(this.ExportTableButton);
+            this.Controls.Add(this.ClearTableButton);
+            this.Controls.Add(this.ImportTableButton);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.addRowButton);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.DelRowButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
@@ -1784,7 +1820,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button DelRowButton;
         private System.Windows.Forms.Button addRowButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox text_dibanhou;
@@ -1921,6 +1957,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.Button ImportTableButton;
+        private System.Windows.Forms.Button ClearTableButton;
+        private System.Windows.Forms.Button ExportTableButton;
     }
 }
 

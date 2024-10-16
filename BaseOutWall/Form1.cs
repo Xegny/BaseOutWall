@@ -91,7 +91,7 @@ namespace BaseOutWall
         private void button1_Click(object sender, EventArgs e)//绘图
         {
             try
-            { 
+            {
                 //固定参数
                 double dianceng = Double.Parse(text_dianceng.Text);
                 double dingbiaogao = Double.Parse(text_dingbiaogao.Text);
@@ -126,7 +126,7 @@ namespace BaseOutWall
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-            } 
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)//删除层
@@ -420,6 +420,170 @@ namespace BaseOutWall
         {
             this.label4.Visible = false;
             this.textBox3.Visible = false;
+        }
+
+        private void ClearTableButton_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+        }
+
+        private void ImportTableButton_Click(object sender, EventArgs e)
+        {
+            #region 选择文件
+
+            var FilePath = string.Empty;
+            var openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Multiselect = false;//允许同时选择多个文件 
+            //openFileDialog1.InitialDirectory = "e:\\";
+            openFileDialog1.Filter = "构件列表(*.csv)|*.csv";// "图纸目录(*.txt)|*.txt|图纸目录(*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FilePath = openFileDialog1.FileNames[0].ToString();
+            }
+
+            #endregion
+
+            if (File.Exists(FilePath))
+            {
+                FromCsv(dataGridView1, FilePath);
+                MessageBox.Show("表格导入成功");
+            }
+        }
+
+        private void ExportTableButton_Click(object sender, EventArgs e)
+        {
+            #region 选择文件
+
+            var FilePath = string.Empty;
+            var saveFileDialog1 = new SaveFileDialog();
+            //设置文件类型 
+            saveFileDialog1.Filter = "构件列表(*.csv)|*.csv";//|构件列表(*.*)|*.*"; 
+            //设置默认文件类型显示顺序 
+            saveFileDialog1.FilterIndex = 1;
+            //保存对话框是否记忆上次打开的目录 
+            saveFileDialog1.RestoreDirectory = true;
+            //设置默认的文件名
+            saveFileDialog1.DefaultExt = "构件列表";// in wpf is  sfd.FileName = "YourFileName";
+            //点了保存按钮进入 
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string localFilePath = saveFileDialog1.FileName.ToString(); //获得文件路径 
+                string fileNameExt = localFilePath.Substring(localFilePath.LastIndexOf("\\") + 1); //获取文件名，不带路径
+
+                FilePath = localFilePath;
+
+            }
+
+            ToCsv(dataGridView1, FilePath);
+
+            if (!File.Exists(FilePath)) MessageBox.Show("表格导出失败");
+
+            #endregion
+        }
+
+        private void FromCsv(DataGridView dv, string path)
+        {
+            var list = ReadFile(path);
+
+            dv.Rows.Clear();
+            for (int i = 0; i < list.Count; i++)
+            {
+                var r = list[i];
+                dv.Rows.Add(r);
+            }
+        }
+
+        private void ToCsv(DataGridView dv1, string path)
+        {
+            var list = new List<string[]>();
+
+            for (int i = 0; i < dv1.RowCount; i++)
+            {
+                var ro = dv1.Rows[i];
+                var array = new List<string>();
+                for (int j = 0; j < ro.Cells.Count; j++)
+                {
+                    var value = ro.Cells[j].Value;
+                    if (value == null)
+                        array.Add("");
+                    else
+                        array.Add(value.ToString());
+                }
+                list.Add(array.ToArray());
+            }
+
+            SaveFile(path, list);
+        }
+
+        /// <summary>
+        /// 生成CSV文件
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="list"></param>
+        public static void SaveFile(string fileName, List<string[]> list)
+        {
+            try
+            {
+                string path = fileName;
+                if (File.Exists(path)) File.Delete(path);
+                //创建StreamWriter 类的实例
+                StreamWriter streamWriter = new StreamWriter(path, true, Encoding.Default);
+
+                //streamWriter.WriteLine("小张");
+                foreach (var row in list)
+                {
+                    var value = string.Empty;
+                    foreach (var col in row)
+                    {
+                        value += col + ",";
+                    }
+                    streamWriter.WriteLine(value);
+                }
+
+                //刷新缓存
+                streamWriter.Flush();
+                //关闭流
+                streamWriter.Close();
+            }
+            catch
+            { MessageBox.Show("导出失败"); }
+
+        }
+        /// <summary>
+        /// 读取CSV文件
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static List<string[]> ReadFile(string fileName)
+        {
+            var list = new List<string[]>();
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    using (StreamReader sr = new StreamReader(fileName, Encoding.Default))
+                    {
+                        //tbInput.Text = sr.ReadToEnd();
+                        //byte[] mybyte = Encoding.UTF8.GetBytes(tbInput.Text); 
+                        while (true)
+                        {
+                            var line = sr.ReadLine(); if (line == null) break;
+                            var array = line.Split(',');
+                            if (array.Length != 0) list.Add(array);
+                        }
+                    }
+                    //MessageBox.Show(list.Count.ToString());
+                }
+                catch
+                { MessageBox.Show("先关闭打开的文件"); }
+            }
+            else
+            {
+                MessageBox.Show("文件不存在");
+            }
+            return list;
         }
     }
 }
