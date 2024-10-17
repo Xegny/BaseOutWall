@@ -37,7 +37,7 @@ namespace BaseOutWall
             this.comboBox10.SelectedIndex = 0;
             // 两墙合一
             this.label4.Visible = false;
-            this.textBox3.Visible = false;
+            this.text_dibantuchuwaiqiangchicun.Visible = false;
             //地下室顶板刚接
             this.radioButton6.Visible = false;
             this.radioButton7.Visible = false;
@@ -270,63 +270,13 @@ namespace BaseOutWall
 
         private void 保存数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            saveFileDialog.Title = "保存数据";
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = saveFileDialog.FileName;
-
-                // 将数据保存到文本文件
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    writer.Write("底层垫层厚度" + ":" + text_dianceng.Text + "\n");
-                    writer.Write("地下室顶标高" + ":" + text_dingbiaogao.Text + "\n");
-                    writer.Write("底层板厚" + ":" + text_dibanhou.Text + "\n");
-                    writer.Write("外墙宽" + ":" + text_waiqiangkuan.Text + "\n");
-                }
-                MessageBox.Show("数据保存成功！");
-            }
 
         }
 
         private void 导入数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            openFileDialog.Title = "选择导入数据源";
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = openFileDialog.FileName;
-
-                // 读取文本文件并填充数据到窗体
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        if (line.Contains("底层垫层厚度"))
-                        {
-                            text_dianceng.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
-                        }
-                        else if (line.Contains("地下室顶标高"))
-                        {
-                            text_dingbiaogao.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
-                        }
-                        else if (line.Contains("底层板厚"))
-                        {
-                            text_dibanhou.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
-                        }
-                        else if (line.Contains("外墙宽"))
-                        {
-                            text_waiqiangkuan.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
-                        }
-                    }
-                }
-                MessageBox.Show("数据导入成功！");
-            }
         }
 
         private void Form1_unLoad(object sender, EventArgs e)
@@ -413,13 +363,13 @@ namespace BaseOutWall
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.label4.Visible = false;
-            this.textBox3.Visible = false;
+            this.text_dibantuchuwaiqiangchicun.Visible = false;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             this.label4.Visible = false;
-            this.textBox3.Visible = false;
+            this.text_dibantuchuwaiqiangchicun.Visible = false;
         }
 
         private void ClearTableButton_Click(object sender, EventArgs e)
@@ -585,5 +535,83 @@ namespace BaseOutWall
             }
             return list;
         }
+
+        private void 批量导入数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog.Title = "选择导入数据源";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+
+                // 读取文本文件并填充数据到窗体
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line.Contains("外墙厚"))
+                        {
+                            text_waiqiangkuan.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("止水钢板"))
+                        {
+                            text_zhishuigangban.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("底板突出外墙尺寸"))
+                        {
+                            text_dibantuchuwaiqiangchicun.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("地下室顶标高"))
+                        {
+                            text_dingbiaogao.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("底层板厚"))
+                        {
+                            text_dibanhou.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("底层垫层厚度"))
+                        {
+                            text_dianceng.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                        else if (line.Contains("室外地坪标高"))
+                        {
+                            text_shiwaidipingbiaogao.Text = line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                        }
+                    }
+                }
+                MessageBox.Show("数据导入成功！");
+            }
+        }
+
+        private void 保存批量数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.Title = "保存数据";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // 将数据保存到文本文件
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.Write("外墙厚" + ":" + text_waiqiangkuan.Text + "\n");
+                    writer.Write("止水钢板" + ":" + text_zhishuigangban.Text + "\n");
+                    writer.Write("底板突出外墙尺寸" + ":" + text_dibantuchuwaiqiangchicun.Text + "\n");
+                    writer.Write("地下室顶标高" + ":" + text_dingbiaogao.Text + "\n");
+                    writer.Write("底层板厚" + ":" + text_dibanhou.Text + "\n");
+                    writer.Write("底层垫层厚度" + ":" + text_dianceng.Text + "\n");
+                    writer.Write("室外地坪标高" + ":" + text_shiwaidipingbiaogao.Text + "\n");
+
+
+                }
+                MessageBox.Show("数据保存成功！");
+            }
+        }
+
     }
 }

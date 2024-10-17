@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.text_dianceng = new System.Windows.Forms.TextBox();
@@ -70,7 +70,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.基本参数 = new System.Windows.Forms.TabPage();
             this.label36 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.text_shiwaidipingbiaogao = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -81,8 +81,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.Boundaryconditions = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.text_dibantuchuwaiqiangchicun = new System.Windows.Forms.TextBox();
+            this.text_zhishuigangban = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -491,12 +491,14 @@
             this.批量导入数据ToolStripMenuItem.Name = "批量导入数据ToolStripMenuItem";
             this.批量导入数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.批量导入数据ToolStripMenuItem.Text = "批量导入数据";
+            this.批量导入数据ToolStripMenuItem.Click += new System.EventHandler(this.批量导入数据ToolStripMenuItem_Click);
             // 
             // 保存批量数据ToolStripMenuItem
             // 
             this.保存批量数据ToolStripMenuItem.Name = "保存批量数据ToolStripMenuItem";
             this.保存批量数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.保存批量数据ToolStripMenuItem.Text = "保存批量数据";
+            this.保存批量数据ToolStripMenuItem.Click += new System.EventHandler(this.保存批量数据ToolStripMenuItem_Click);
             // 
             // 基础设置ToolStripMenuItem
             // 
@@ -533,11 +535,11 @@
             // 基本参数
             // 
             this.基本参数.Controls.Add(this.label36);
-            this.基本参数.Controls.Add(this.textBox28);
+            this.基本参数.Controls.Add(this.text_shiwaidipingbiaogao);
             this.基本参数.Controls.Add(this.groupBox5);
             this.基本参数.Controls.Add(this.label4);
-            this.基本参数.Controls.Add(this.textBox3);
-            this.基本参数.Controls.Add(this.textBox2);
+            this.基本参数.Controls.Add(this.text_dibantuchuwaiqiangchicun);
+            this.基本参数.Controls.Add(this.text_zhishuigangban);
             this.基本参数.Controls.Add(this.checkBox2);
             this.基本参数.Controls.Add(this.label9);
             this.基本参数.Controls.Add(this.label1);
@@ -568,14 +570,14 @@
             this.label36.TabIndex = 25;
             this.label36.Text = "室外地坪标高";
             // 
-            // textBox28
+            // text_shiwaidipingbiaogao
             // 
-            this.textBox28.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox28.Location = new System.Drawing.Point(305, 105);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(64, 21);
-            this.textBox28.TabIndex = 24;
-            this.textBox28.Text = "0";
+            this.text_shiwaidipingbiaogao.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.text_shiwaidipingbiaogao.Location = new System.Drawing.Point(305, 105);
+            this.text_shiwaidipingbiaogao.Name = "text_shiwaidipingbiaogao";
+            this.text_shiwaidipingbiaogao.Size = new System.Drawing.Size(64, 21);
+            this.text_shiwaidipingbiaogao.TabIndex = 24;
+            this.text_shiwaidipingbiaogao.Text = "0";
             // 
             // groupBox5
             // 
@@ -687,23 +689,23 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "底板突出外墙尺寸";
             // 
-            // textBox3
+            // text_dibantuchuwaiqiangchicun
             // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox3.Location = new System.Drawing.Point(106, 112);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(64, 21);
-            this.textBox3.TabIndex = 21;
-            this.textBox3.Text = "600";
+            this.text_dibantuchuwaiqiangchicun.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.text_dibantuchuwaiqiangchicun.Location = new System.Drawing.Point(106, 112);
+            this.text_dibantuchuwaiqiangchicun.Name = "text_dibantuchuwaiqiangchicun";
+            this.text_dibantuchuwaiqiangchicun.Size = new System.Drawing.Size(64, 21);
+            this.text_dibantuchuwaiqiangchicun.TabIndex = 21;
+            this.text_dibantuchuwaiqiangchicun.Text = "600";
             // 
-            // textBox2
+            // text_zhishuigangban
             // 
-            this.textBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(106, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(64, 21);
-            this.textBox2.TabIndex = 20;
-            this.textBox2.Text = "600";
+            this.text_zhishuigangban.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.text_zhishuigangban.Location = new System.Drawing.Point(106, 82);
+            this.text_zhishuigangban.Name = "text_zhishuigangban";
+            this.text_zhishuigangban.Size = new System.Drawing.Size(64, 21);
+            this.text_zhishuigangban.TabIndex = 20;
+            this.text_zhishuigangban.Text = "600";
             // 
             // checkBox2
             // 
@@ -1585,14 +1587,14 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.Location = new System.Drawing.Point(286, 4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
@@ -1662,14 +1664,14 @@
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView3.Location = new System.Drawing.Point(803, 227);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
@@ -1836,8 +1838,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage 基本参数;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox text_dibantuchuwaiqiangchicun;
+        private System.Windows.Forms.TextBox text_zhishuigangban;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -1867,7 +1869,7 @@
         private System.Windows.Forms.ToolStripMenuItem 保存数据ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 打开数据ToolStripMenuItem;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox text_shiwaidipingbiaogao;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox7;
