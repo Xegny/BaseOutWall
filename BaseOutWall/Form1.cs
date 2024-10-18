@@ -120,8 +120,20 @@ namespace BaseOutWall
 
                 this.Hide();
 
+                var data = new WallData
+                {
+                    dianceng = dianceng,
+                    dingbiaogao = dingbiaogao,
+                    neiqiangkuan = neiqiangkuan,
+                    xianeiqiangkuan = xianeiqiangkuan,
+                    waiqiangkuan = waiqiangkuan,
+                    dibanhou = dibanhou,
+                    storyList = storyList
+                };
+
                 //运行画图函数
-                OutWall.CreateOutWall(dianceng, dingbiaogao, neiqiangkuan, xianeiqiangkuan, waiqiangkuan, dibanhou, storyList);
+                OutWall.CreateOutWall(data);
+                //OutWall.CreateOutWall(dianceng, dingbiaogao, neiqiangkuan, xianeiqiangkuan, waiqiangkuan, dibanhou, storyList);
             }
             catch (Exception ex)
             {

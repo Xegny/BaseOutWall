@@ -55,7 +55,7 @@ namespace BaseOutWall.Utils
 
                         #region 默认标注
 
-                        CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100", 300);
+                        CadFileIoUtils.CadDrawingUtils_AddDimStyle(CadDrawing.Current, (short)1, "dims-100", 150);
 
                         #endregion
 

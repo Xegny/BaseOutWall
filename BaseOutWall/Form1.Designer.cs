@@ -134,9 +134,9 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonAllOut = new System.Windows.Forms.RadioButton();
+            this.radioButtonInOut = new System.Windows.Forms.RadioButton();
+            this.radioButtonAllIn = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -1257,9 +1257,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton5);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton3);
+            this.groupBox2.Controls.Add(this.radioButtonAllOut);
+            this.groupBox2.Controls.Add(this.radioButtonInOut);
+            this.groupBox2.Controls.Add(this.radioButtonAllIn);
             this.groupBox2.Location = new System.Drawing.Point(406, 15);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(164, 123);
@@ -1267,39 +1267,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "水平分布筋三种画法";
             // 
-            // radioButton5
+            // radioButtonAllOut
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(20, 95);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(131, 16);
-            this.radioButton5.TabIndex = 2;
-            this.radioButton5.Text = "水平分布筋均在外侧";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            this.radioButtonAllOut.AutoSize = true;
+            this.radioButtonAllOut.Location = new System.Drawing.Point(20, 95);
+            this.radioButtonAllOut.Name = "radioButtonAllOut";
+            this.radioButtonAllOut.Size = new System.Drawing.Size(131, 16);
+            this.radioButtonAllOut.TabIndex = 2;
+            this.radioButtonAllOut.Text = "水平分布筋均在外侧";
+            this.radioButtonAllOut.UseVisualStyleBackColor = true;
+            this.radioButtonAllOut.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
-            // radioButton4
+            // radioButtonInOut
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(20, 64);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(119, 16);
-            this.radioButton4.TabIndex = 1;
-            this.radioButton4.Text = "一侧在内一侧在外";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButtonInOut.AutoSize = true;
+            this.radioButtonInOut.Location = new System.Drawing.Point(20, 64);
+            this.radioButtonInOut.Name = "radioButtonInOut";
+            this.radioButtonInOut.Size = new System.Drawing.Size(119, 16);
+            this.radioButtonInOut.TabIndex = 1;
+            this.radioButtonInOut.Text = "一侧在内一侧在外";
+            this.radioButtonInOut.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButtonAllIn
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(20, 30);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(131, 16);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "水平分布筋均在内侧";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.radioButtonAllIn.AutoSize = true;
+            this.radioButtonAllIn.Checked = true;
+            this.radioButtonAllIn.Location = new System.Drawing.Point(20, 30);
+            this.radioButtonAllIn.Name = "radioButtonAllIn";
+            this.radioButtonAllIn.Size = new System.Drawing.Size(131, 16);
+            this.radioButtonAllIn.TabIndex = 0;
+            this.radioButtonAllIn.TabStop = true;
+            this.radioButtonAllIn.Text = "水平分布筋均在内侧";
+            this.radioButtonAllIn.UseVisualStyleBackColor = true;
+            this.radioButtonAllIn.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -1846,9 +1846,9 @@
         private System.Windows.Forms.TabPage 计算参数;
         private System.Windows.Forms.TabPage 绘图参数;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButtonAllOut;
+        private System.Windows.Forms.RadioButton radioButtonInOut;
+        private System.Windows.Forms.RadioButton radioButtonAllIn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
